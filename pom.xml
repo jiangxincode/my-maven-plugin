@@ -8,8 +8,8 @@
 
 	<groupId>org.sonatype.maven.plugin</groupId>
 	<artifactId>emma-maven-plugin</artifactId>
-	<version>1.3-SNAPSHOT</version>
-	<inceptionYear>2007</inceptionYear>
+	<version>1.2.1</version>
+	<inceptionYear>2013</inceptionYear>
 	<packaging>maven-plugin</packaging>
 	<name>Maven Emma Plugin</name>
 	<description>EMMA plugin for Maven 2.</description>
@@ -27,10 +27,10 @@
 	</licenses>
 	<developers>
 		<developer>
-			<id>romale</id>
-			<name>Alexandre ROMAN</name>
-			<email>alexandre.roman@gmail.com</email>
-			<url>http://code.google.com/u/alexandre.roman</url>
+			<id>tma</id>
+			<name>TerryMa</name>
+			<email>zjumty@gmail.com</email>
+			<url>https://github.com/zjumty</url>
 			<roles>
 				<role>Project owner</role>
 			</roles>

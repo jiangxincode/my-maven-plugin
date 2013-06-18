@@ -48,8 +48,7 @@ import com.vladium.util.XProperties;
  * @requiresDependencyResolution test
  */
 public class EmmaReportMojo
-    extends AbstractMavenReport
-{
+        extends AbstractMavenReport {
     private static final String BUNDLE_BASENAME = EmmaReportMojo.class.getPackage().getName() + ".Resources";
 
     /**
@@ -180,120 +179,104 @@ public class EmmaReportMojo
      * @throws MavenReportException if any parameters are wrong
      */
     protected void checkParameters()
-        throws MavenReportException
-    {
-        if ( getLog().isDebugEnabled() )
-        {
+            throws MavenReportException {
+        if (getLog().isDebugEnabled()) {
             verbose = true;
         }
 
-        if ( dataFiles == null )
-        {
-            dataFiles = new File[] { new File( project.getBasedir(), "coverage.ec" ) };
+        if (dataFiles == null) {
+            dataFiles = new File[]{new File(project.getBasedir(), "coverage.ec")};
         }
-        if ( sourcePaths == null )
-        {
-            sourcePaths = new File[] { new File( project.getBuild().getSourceDirectory() ) };
+        if (sourcePaths == null) {
+            sourcePaths = new File[]{new File(project.getBuild().getSourceDirectory())};
         }
     }
 
-    protected void executeReport( Locale locale )
-        throws MavenReportException
-    {
+    protected void executeReport(Locale locale)
+            throws MavenReportException {
         checkParameters();
 
-        if ( !canGenerateReport() )
-        {
+        if (!canGenerateReport()) {
             return;
         }
 
-        getLog().debug( "Output directory: " + outputDirectory.getAbsolutePath() );
+        getLog().debug("Output directory: " + outputDirectory.getAbsolutePath());
 
         String[] sources = new String[sourcePaths.length];
-        getLog().debug( "Source paths:" );
-        for ( int i = 0; i < sourcePaths.length; ++i )
-        {
-            getLog().debug( " o " + sourcePaths[i] );
+        getLog().debug("Source paths:");
+        for (int i = 0; i < sourcePaths.length; ++i) {
+            getLog().debug(" o " + sourcePaths[i]);
             sources[i] = sourcePaths[i].getAbsolutePath();
         }
 
         // aggregate several EMMA coverage data files
-        final File[] newDataFiles = EmmaUtils.fixDataFileLocations( project, dataFiles );
+        final File[] newDataFiles = EmmaUtils.fixDataFileLocations(project, dataFiles);
         String[] dataPath = new String[newDataFiles.length + 1];
-        for ( int i = 0; i < newDataFiles.length; i++ )
-        {
+        for (int i = 0; i < newDataFiles.length; i++) {
             dataPath[i] = newDataFiles[i].getAbsolutePath();
         }
         dataPath[newDataFiles.length] = metadataFile.getAbsolutePath();
 
         ReportProcessor reporter = ReportProcessor.create();
-        reporter.setAppName( IAppConstants.APP_NAME );
-        reporter.setDataPath( dataPath );
-        reporter.setSourcePath( sources );
-        reporter.setReportTypes( formats.split( "," ) );
+        reporter.setAppName(IAppConstants.APP_NAME);
+        reporter.setDataPath(dataPath);
+        reporter.setSourcePath(sources);
+        reporter.setReportTypes(formats.split(","));
         XProperties properties = new XProperties();
-        properties.setProperty( "report.html.out.file", new File( outputDirectory, "index.html" ).getAbsolutePath() );
-        properties.setProperty( "report.xml.out.file", new File( outputDirectory, "coverage.xml" ).getAbsolutePath() );
-        properties.setProperty( "report.txt.out.file", new File( outputDirectory, "coverage.txt" ).getAbsolutePath() );
-        reporter.setPropertyOverrides( properties );
+        properties.setProperty("report.html.out.file", new File(outputDirectory, "index.html").getAbsolutePath());
+        properties.setProperty("report.xml.out.file", new File(outputDirectory, "coverage.xml").getAbsolutePath());
+        properties.setProperty("report.txt.out.file", new File(outputDirectory, "coverage.txt").getAbsolutePath());
+        properties.setProperty("report.html.outputEncoding", outputEncoding);
+        properties.setProperty("report.html.sourceEncoding", sourceEncoding);
+
+        reporter.setPropertyOverrides(properties);
 
         reporter.run();
     }
 
-    protected String getOutputDirectory()
-    {
+    protected String getOutputDirectory() {
         return outputDirectory.getAbsolutePath();
     }
 
-    protected MavenProject getProject()
-    {
+    protected MavenProject getProject() {
         return project;
     }
 
-    protected Renderer getSiteRenderer()
-    {
+    protected Renderer getSiteRenderer() {
         return siteRenderer;
     }
 
-    public String getDescription( Locale locale )
-    {
-        return getResourceBundle( locale ).getString( "emma.plugin.description" );
+    public String getDescription(Locale locale) {
+        return getResourceBundle(locale).getString("emma.plugin.description");
     }
 
-    public String getName( Locale locale )
-    {
-        return getResourceBundle( locale ).getString( "emma.plugin.name" );
+    public String getName(Locale locale) {
+        return getResourceBundle(locale).getString("emma.plugin.name");
     }
 
-    public String getOutputName()
-    {
+    public String getOutputName() {
         return "emma/index";
     }
 
-    public boolean isExternalReport()
-    {
+    public boolean isExternalReport() {
         return true;
     }
 
-    public boolean canGenerateReport()
-    {
+    public boolean canGenerateReport() {
         final boolean ready = metadataFile.exists();
-        if ( !ready )
-        {
+        if (!ready) {
             getLog().info(
-                           "Not generating EMMA report as the metadata file (" + metadataFile.getName()
-                               + ") could not be found" );
+                    "Not generating EMMA report as the metadata file (" + metadataFile.getName()
+                            + ") could not be found");
         }
         return ready;
     }
 
-    protected ResourceBundle getResourceBundle( Locale locale )
-    {
-        ResourceBundle bundle = (ResourceBundle) bundles.get( locale );
-        if ( bundle == null )
-        {
-            bundle = ResourceBundle.getBundle( BUNDLE_BASENAME, locale );
-            bundles.put( locale, bundle );
+    protected ResourceBundle getResourceBundle(Locale locale) {
+        ResourceBundle bundle = (ResourceBundle) bundles.get(locale);
+        if (bundle == null) {
+            bundle = ResourceBundle.getBundle(BUNDLE_BASENAME, locale);
+            bundles.put(locale, bundle);
         }
         return bundle;
     }
