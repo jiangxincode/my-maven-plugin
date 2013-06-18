@@ -82,11 +82,18 @@ public class EmmaReportMojo
     protected File[] dataFiles;
 
     /**
-     * Report encoding.
+     * Report sourceEncoding.
      *
-     * @parameter expression="${emma.report.encoding}" default-value="UTF-8"
+     * @parameter expression="${emma.report.sourceEncoding}" default-value="UTF-8"
      */
-    protected String encoding;
+    protected String sourceEncoding;
+
+    /**
+     * Report outputEncoding.
+     *
+     * @parameter expression="${emma.report.outputEncoding}" default-value="UTF-8"
+     */
+    protected String outputEncoding;
 
     /**
      * Specifies the amount of detail to be included in the generated coverage reports. Valid values are:
