@@ -228,7 +228,8 @@ public class EmmaReportMojo
         properties.setProperty("report.txt.out.file", new File(outputDirectory, "coverage.txt").getAbsolutePath());
         properties.setProperty("report.html.outputEncoding", outputEncoding);
         properties.setProperty("report.html.sourceEncoding", sourceEncoding);
-
+        getLog().info("Report Output Encoding : " + outputEncoding);
+        getLog().info("Java Source Code Encoding : " + sourceEncoding);
         reporter.setPropertyOverrides(properties);
 
         reporter.run();
