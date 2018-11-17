@@ -214,8 +214,10 @@ public class EmmaReportMojo
         String[] dataPath = new String[newDataFiles.length + 1];
         for (int i = 0; i < newDataFiles.length; i++) {
             dataPath[i] = newDataFiles[i].getAbsolutePath();
+            getLog().debug("dataPath[" + i + "]: " + dataPath[i]);
         }
         dataPath[newDataFiles.length] = metadataFile.getAbsolutePath();
+        getLog().debug("dataPath[" + newDataFiles.length + "]: " + dataPath[newDataFiles.length]);
 
         ReportProcessor reporter = ReportProcessor.create();
         reporter.setAppName(IAppConstants.APP_NAME);

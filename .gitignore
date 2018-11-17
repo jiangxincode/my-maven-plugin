@@ -1,0 +1,8 @@
+bin
+dist
+out
+release
+target/
+.classpath
+.project
+.settings/
