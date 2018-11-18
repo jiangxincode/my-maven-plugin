@@ -162,7 +162,7 @@ public class EmmaInstrumentMojo
     {
         // look for EMMA dependency in this plugin classpath
         final Map pluginArtifactMap = ArtifactUtils.artifactMapByVersionlessId( pluginClasspath );
-        Artifact emmaArtifact = (Artifact) pluginArtifactMap.get( "emma:emma" );
+        Artifact emmaArtifact = (Artifact) pluginArtifactMap.get( "com.github.jiangxincode:emma" );
 
         if ( emmaArtifact == null )
         {
