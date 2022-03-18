@@ -4,6 +4,10 @@
 
 `emma-maven-plugin` is a maven plugin for `emma`. You can visit <http://emma.sourceforge.net/> for further information of `emma`.
 
+## What are the differences between `emma-maven-plugin` and `maven-emma-plugin`
+
+`maven-emma-plugin`(<http://emma.sourceforge.net/maven-emma-plugin/>) is for Maven 1.x, and `emma-maven-plugin` is for Maven 2.0+
+
 ## What are the differences between this fork and origin `emma-maven-plugin`?
 
 * Fix the encoding problem when source code uses no-ascii charset.
