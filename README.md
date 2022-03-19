@@ -1,21 +1,27 @@
-# MojoHaus JDepend Maven Plugin
+# JDepend Maven Plugin
 
-[![Apache License, Version 2.0, January 2004](https://img.shields.io/github/license/mojohaus/jdepend-maven-plugin.svg?label=License)](http://www.apache.org/licenses/)
-[![Maven Central](https://img.shields.io/maven-central/v/org.codehaus.mojo/jdepend-maven-plugin.svg?label=Maven%20Central)](http://search.maven.org/#search%7Cga%7C1%7Cjdepend-maven-plugin)
-[![Build Status](https://travis-ci.org/mojohaus/jdepend-maven-plugin.svg?branch=master)](https://travis-ci.org/mojohaus/jdepend-maven-plugin)
+[![Apache License, Version 2.0, January 2004](https://img.shields.io/github/license/jiangxincode/jdepend-maven-plugin.svg?label=License)](http://www.apache.org/licenses/)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.jiangxincode/jdepend-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.jiangxincode/jdepend-maven-plugin)
 
+The `jdepend-maven-plugin` plugin produces a nicely formatted metrics report based on your project. This project Base on: <https://github.com/mojohaus/jdepend-maven-plugin>, and will be updated more frequently.
 
-The [jdepend-maven-plugin](http://www.mojohaus.org/jdepend-maven-plugin/)
-plugin produces a nicely formatted metrics report based on your project.
- 
-## Releasing
+## How to Use
 
-* Make sure `gpg-agent` is running.
-* Execute `mvn -B release:prepare release:perform`
+Add the below content to your `<project><reporting><plugins>` node of pom.xml. You can find latest `${jdepend-maven-plugin-version}` from <https://search.maven.org/>
 
-For publishing the site do the following:
-
+```xml
+    <plugin>
+        <groupId>com.github.jiangxincode</groupId>
+        <artifactId>jdepend-maven-plugin</artifactId>
+        <version>${jdepend-maven-plugin-version}</version>
+    </plugin>
 ```
-cd target/checkout
-mvn verify site site:stage scm-publish:publish-scm
-```
+
+Run `mvn clean site`
+
+You can see the example from my another project:
+<https://jiangxincode.github.io/ApkToolBoxGUI/simian-report.html>
+
+## License
+
+* Apache License V2.0 http://www.apache.org/licenses/LICENSE-2.0
