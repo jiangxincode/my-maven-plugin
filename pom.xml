@@ -11,6 +11,7 @@
 
     <modules>
         <module>simian-maven-plugin</module>
+        <module>fireline-maven-plugin</module>
     </modules>
 
     <properties>
