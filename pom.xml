@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>simian-maven-plugin</module>
     </modules>
 
     <properties>

@@ -1,0 +1,29 @@
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.jiangxincode</groupId>
+    <artifactId>simian</artifactId>
+    <version>2.5.10</version>
+    <packaging>jar</packaging>
+    <name>Simian</name>
+    <description>Simian (Similarity Analyser) identifies duplication in Java, C#, C, C++, COBOL, Ruby, JSP, ASP, HTML, XML, Visual Basic, Groovy source code and even plain text files. In fact, simian can be used on any human readable files such as ini files, deployment descriptors, you name it.</description>
+    <url>http://www.harukizaemon.com/simian/index.html</url>
+    <licenses>
+        <license>
+            <name>Simian Software License Agreement</name>
+            <url>http://www.harukizaemon.com/simian/license.pdf</url>
+        </license>
+    </licenses>
+    <scm>
+        <url>git@harukizaemon.com:simian/simian-git.git</url>
+        <connection>scm:git:git@harukizaemon.com:simian/simian-git.git</connection>
+        <developerConnection>scm:git:git@harukizaemon.com:simian/simian-git.git</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <name>haruki_zaemon</name>
+            <email>haruki_zaemon@mac.com</email>
+        </developer>
+    </developers>
+</project>
