@@ -12,6 +12,7 @@
     <modules>
         <module>simian-maven-plugin</module>
         <module>fireline-maven-plugin</module>
+        <module>jdepend-maven-plugin</module>
     </modules>
 
     <properties>
