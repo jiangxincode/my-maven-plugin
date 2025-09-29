@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
+        <groupId>com.github.jiangxincode</groupId>
+        <artifactId>my-maven-plugin</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>io.github.jiangxincode</groupId>
@@ -17,14 +17,6 @@
     <name>JDepend Maven Plugin</name>
     <description>Maven plugin that generates JDepend reports for your projects.</description>
     <inceptionYear>2006</inceptionYear>
-
-    <licenses>
-        <license>
-            <name>Apache License 2</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
 
     <developers>
         <developer>
@@ -54,12 +46,6 @@
     <prerequisites>
         <maven>${mavenVersion}</maven>
     </prerequisites>
-
-    <scm>
-        <connection>scm:git:https://github.com/jiangxincode/jdepend-maven-plugin.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/jiangxincode/jdepend-maven-plugin.git</developerConnection>
-        <url>https://github.com/jiangxincode/jdepend-maven-plugin</url>
-    </scm>
     <issueManagement>
         <system>github</system>
         <url>https://github.com/jiangxincode/jdepend-maven-plugin/issues</url>
