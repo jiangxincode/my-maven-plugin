@@ -54,12 +54,16 @@ public class SimianReport extends AbstractMavenReport {
 	public void executeReport(Locale locale) throws MavenReportException {
 		ArrayList<File> lists = new ArrayList<File>();
 		getLog().info("sourceDirectory： " + sourceDirectory);
-		ArrayList<File> sourceList = new FileFilterWrapper().list(sourceDirectory.getAbsolutePath(), ".java");
-		getLog().info("testSourceDirectory： " + testSourceDirectory);
-		ArrayList<File> testSourceList = new FileFilterWrapper().list(testSourceDirectory.getAbsolutePath(), ".java");
-		lists.addAll(sourceList);
-		lists.addAll(testSourceList);
+        if (sourceDirectory.exists()) {
+            ArrayList<File> sourceList = new FileFilterWrapper().list(sourceDirectory.getAbsolutePath(), ".java");
+            lists.addAll(sourceList);
+        }
 
+		getLog().info("testSourceDirectory： " + testSourceDirectory);
+        if (testSourceDirectory.exists()) {
+            ArrayList<File> testSourceList = new FileFilterWrapper().list(testSourceDirectory.getAbsolutePath(), ".java");
+            lists.addAll(testSourceList);
+        }
 		MyAuditListener auditListener = new MyAuditListener(getLog());
 
 		Options options = new Options();
