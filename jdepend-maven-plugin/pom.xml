@@ -74,7 +74,6 @@
         <jdependVersion>2.9.5</jdependVersion>
         <mojo.java.target>1.5</mojo.java.target>
         <scmpublish.content>target/staging/${project.artifactId}</scmpublish.content>
-        <maven-project-info-reports-plugin.version>2.8</maven-project-info-reports-plugin.version>
     </properties>
 
     <dependencies>
