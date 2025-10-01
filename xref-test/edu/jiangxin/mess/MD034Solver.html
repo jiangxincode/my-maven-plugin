@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>MD034Solver xref</title>
+<link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../testapidocs/edu/jiangxin/mess/MD034Solver.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> edu.jiangxin.mess;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> java.io.BufferedReader;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> java.io.BufferedWriter;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> java.io.File;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> java.io.FileReader;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> java.io.FileWriter;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> java.io.IOException;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> java.util.regex.Matcher;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> java.util.regex.Pattern;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> * Solve the problem of MD034. &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment"> * {@link <a href="https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md}" target="alexandria_uri">https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md}</a></em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> * This program doesn't process any exception!</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> * @author aloys</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="MD034Solver" href="../../../edu/jiangxin/mess/MD034Solver.html#MD034Solver">MD034Solver</a> {
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String regex = <span class="jxr_string">"&#92;&#92;b(https?|ftp|file)://[-A-Z0-9+&amp;@#/%?=~_|$!:,.;]*[A-Z0-9+&amp;@#/%=~_|$]"</span>;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  	
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String sourceDirStr = <span class="jxr_string">"D:&#92;&#92;temp&#92;&#92;cnblogs"</span>;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  	
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String targetDirStr = <span class="jxr_string">"D:&#92;&#92;temp&#92;&#92;cnblogsbak"</span>;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(String[] args) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  		<em class="jxr_comment">// Source directory must be a valid directory which contains the text files to be processed.</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  		File sourceDir = <strong class="jxr_keyword">new</strong> File(sourceDirStr);
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  		<em class="jxr_comment">// Target directory must be a valid directory which will save the proecessed files.</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  		File targetDir = <strong class="jxr_keyword">new</strong> File(targetDirStr);
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  		<strong class="jxr_keyword">for</strong> (File file : sourceDir.listFiles()) {
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  			<em class="jxr_comment">// take off the .git directory and .gitignore file</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  			<strong class="jxr_keyword">if</strong> (file.getName().startsWith(<span class="jxr_string">"."</span>)) {
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  				<strong class="jxr_keyword">continue</strong>;
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  			}
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  			BufferedReader reader = <strong class="jxr_keyword">new</strong> BufferedReader(<strong class="jxr_keyword">new</strong> FileReader(file));
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  			BufferedWriter writer = <strong class="jxr_keyword">new</strong> BufferedWriter(<strong class="jxr_keyword">new</strong> FileWriter(<strong class="jxr_keyword">new</strong> File(targetDir, file.getName())));
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  			String temp = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  			<strong class="jxr_keyword">while</strong> ((temp = reader.readLine()) != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  				Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  				Matcher regexMatcher = pattern.matcher(temp);
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  				StringBuffer sb = <strong class="jxr_keyword">new</strong> StringBuffer();
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  				<strong class="jxr_keyword">while</strong> (regexMatcher.find()) {
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  					String group = regexMatcher.group();
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  					<strong class="jxr_keyword">int</strong> start = regexMatcher.start();
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  					<strong class="jxr_keyword">if</strong> (start &gt;= 1 &amp;&amp; (temp.charAt(start - 1) == '&lt;' || temp.charAt(start - 1) == '(')) {
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  						regexMatcher.appendReplacement(sb, group);
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  					} <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  						regexMatcher.appendReplacement(sb, <span class="jxr_string">"&lt;"</span> + group + <span class="jxr_string">"&gt;"</span>);
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  					}
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  				}
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  				regexMatcher.appendTail(sb);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  				writer.write(sb.toString());
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  				writer.newLine();
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  			}
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  			reader.close();
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  			writer.close();
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		}
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  	}
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  }
+</pre>
+<hr/>
+<div id="footer">© 2025</div>
+</body>
+</html>
