@@ -36,7 +36,7 @@ public class FireLineReport extends AbstractMavenReport {
     @Parameter(defaultValue = "${project.build.directory}\\site", property = "reportDirectory", required = true)
     private File reportDirectory;
 
-    @Parameter(defaultValue = "${project.build.directory}\\fireline.jar", property = "fireLinePath", required = true)
+    @Parameter(defaultValue = "${basedir}\\lib\\fireline.jar", property = "fireLinePath", required = true)
     private String fireLinePath;
 
     @Parameter(defaultValue = "http://magic.360.cn/fireline.jar", property = "fireLineDownloadUrl", required = true)
