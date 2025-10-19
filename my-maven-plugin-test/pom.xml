@@ -65,7 +65,7 @@
                 <plugin>
                     <groupId>com.github.jiangxincode</groupId>
                     <artifactId>emma-maven-plugin</artifactId>
-                    <version>1.2.4</version>
+                    <version>1.2.5-SNAPSHOT</version>
                     <inherited>true</inherited>
                     <executions>
                         <execution>
@@ -94,12 +94,12 @@
                 <plugin>
                     <groupId>io.github.jiangxincode</groupId>
                     <artifactId>jdepend-maven-plugin</artifactId>
-                    <version>2.1</version>
+                    <version>2.2.0-SNAPSHOT</version>
                 </plugin>
                 <plugin>
                     <groupId>io.github.jiangxincode</groupId>
                     <artifactId>fireline-maven-plugin</artifactId>
-                    <version>0.0.3</version>
+                    <version>0.0.4-SNAPSHOT</version>
                     <configuration>
                         <fireLineDownloadUrl>http://124.222.145.48/download/my-maven-plugin/fireline_1.7.3.jar</fireLineDownloadUrl>
                     </configuration>
@@ -107,7 +107,7 @@
                 <plugin>
                     <groupId>com.github.jiangxincode</groupId>
                     <artifactId>simian-maven-plugin</artifactId>
-                    <version>0.0.8</version>
+                    <version>0.0.8-SNAPSHOT</version>
                     <configuration>
                         <threshold>3</threshold>
                     </configuration>
