@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<redline>
+<summary src="D:\a\my-maven-plugin\my-maven-plugin\my-maven-plugin-test\src\main\java">
+<serial_no>1761228279849</serial_no>
+<submitter>tester</submitter>
+<reportname>testReport</reportname>
+<product/>
+<project_name>test</project_name>
+<version>1.4.8</version>
+<filenum>1</filenum>
+<linenum>24</linenum>
+<starttime>2025-10-23 22:04:39</starttime>
+<endtime>2025-10-23 22:04:45</endtime>
+<totaltime>5秒 476毫秒 </totaltime>
+<blocknum>0</blocknum>
+<errornum>0</errornum>
+<warningnum>0</warningnum>
+<suggestnum>0</suggestnum>
+<errorfilenum>0</errorfilenum>
+</summary>
+</redline>

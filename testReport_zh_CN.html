@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>360火线扫描结果</title>
+<link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/dataTables.bootstrap.css" rel="stylesheet"
+	type="text/css" />
+<link href="css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+body, .box, .box-footer {
+	background-color: #ECF0F5;
+}
+body{
+	overflow:scroll;
+}
+.wrapper{
+	overflow:visible;
+}
+.main-footer {
+	background: #34495E;
+	color: #ffffff;
+	margin-left: 0px;
+}
+
+.tab-content {
+	min-height: 818px;
+	background: #ECF0F5;
+}
+
+.label-default {
+	background-color: #000000;
+	color: #FFF;
+}
+
+.btn-default {
+	background-color: #000000;
+	color: #FFF;
+}
+
+td.details-control {
+	background: url('./css/details_open.png') no-repeat center center;
+	cursor: pointer;
+}
+
+tr.shown td.details-control {
+	background: url('./css/details_close.png') no-repeat center center;
+}
+#translationid{
+	    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    width: 590px;
+    font-size: 13px;
+    text-align: right;
+    color: #999;
+}
+.translation a {
+    position: relative;
+    height: 32px;
+    line-height: 32px;
+    margin-left: 19px;
+    color: #555;
+    text-decoration: underline;
+    outline: none;
+    display: inline-block;
+    text-shadow: none;
+}
+#translationid{
+	 position: relative;
+	 width: auto;
+}
+.language{
+	text-align: right;
+}
+.feedback{
+     position: fixed;
+     right: 0;
+     bottom: 130px;
+     width: 42px;
+     height: 42px;
+     background: url(./css/feedback.gif) no-repeat;
+     z-index: 1000;
+     cursor: pointer;
+     border-radius: 2px;
+   }
+  .layer_top{
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    bottom: 80px;
+  }
+  .layer_ico{
+    background: url(./css/ThreeIcon.png) no-repeat 0 -158px;
+    z-index: 1000;
+  }
+</style>
+
+</head>
+
+<body id="body">
+	<div class="wrapper">
+		<div style="min-height: 960px;">
+			<section class="content-header">
+			<h1 align="center" class="page-header">火线扫描报告</h1>
+			<div class="language">
+				<font>语言/Language:</font>
+				<div id="translationid" class="btn-group" role="group">
+					<a id="chinese" href="testReport_zh_CN.html"  type="button" class="btn btn-success">中文</a>
+					<a id="english" href="testReport.html"  type="button" class="btn btn-success">English</a>
+				</div>
+			</div>
+			</section>
+			<section class="content">
+			<div class="row">
+				<div class="nav-tabs-custom">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#tab_1" data-toggle="tab"
+							aria-expanded="true">火线汇总报告</a></li>
+						<li class=""><a href="#tab_2" data-toggle="tab"
+							aria-expanded="false">问题详情列表</a></li>
+						<li class=""><a href="#tab_3" data-toggle="tab"
+							aria-expanded="false">重复代码检测</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="tab_1">
+							<div class="col-md-4 col-md-offset-1">
+								<div class="box box-primary">
+									<div class="box-header with-border">
+										<h3 class="box-title">错误概况</h3>
+
+									</div>
+									<!-- /.box-header -->
+									<div class="box-body">
+										<div class="row">
+											<div class="chart-responsive">
+												<canvas id="pieChart" height="155" width="185"
+													style="width: 185px; height: 155px;"></canvas>
+											</div>
+											<!-- ./chart-responsive -->
+											<!-- /.col -->
+										</div>
+										<!-- /.row -->
+									</div>
+									<!-- /.box-body -->
+									<div class="box-footer no-padding">
+										<ul id='CountNum' class='nav nav-stacked'><li><a href='javascript:void(0);' class='gotodetails'>Block<span class='pull-right badge bg-black'>0</span></a></li><li><a href='javascript:void(0);' class='gotodetails'>风险<span class='pull-right badge bg-red'>0</span></a></li><li><a href='javascript:void(0);' class='gotodetails'>警告<span class='pull-right badge bg-orange'>0</span></a></li><li><a href='javascript:void(0);' class='gotodetails'>优化<span class='pull-right badge bg-blue'>0</span></a></li></ul>
+									</div>
+									<!-- /.footer -->
+								</div>
+							</div>
+							<div class="col-md-5 col-md-offset-1">
+								<div class="box box-primary">
+									<div class="box-header">
+										<h3 class="box-title">项目概况</h3>
+									</div>
+									<div class="box-body no-padding">
+										<table id="totalresults" class="table table-condensed">
+											<tbody>
+												<tr>
+													<td id="srcDir">扫描项目路径</td><td>D:\a\my-maven-plugin\my-maven-plugin\my-maven-plugin-test\src\main\java</td></tr>
+												</tr>
+												<tr id="totalresult">
+										<td>开始时间</td><td>2025-10-23 22:04:39</td></tr><tr><td>结束时间</td><td>2025-10-23 22:04:45</td></tr><tr><td>测试耗时</td><td>5秒 476毫秒 </td></tr><tr><td>项目名称</td><td>test</td></tr><tr><td>提交人</td><td>tester</td></tr><tr><td>总文件数</td><td>1</td></tr><tr><td>总代码行数</td><td>24</td></tr><tr><td>问题咨询联系人</td><td>火线用户QQ群：<a target='_blank' href='http://shang.qq.com/wpa/qunwpa?idkey=fe80da96790b5e6f40dc694fa18891fd21a74baf2b45135245eb751d73d2ca80'><img border='0' src='http://pub.idqqimg.com/wpa/images/group.png' alt='群号：298228528' title='群号：298228528'></a></br>问题反馈邮箱：g-qtest-fankui@360.cn</td></tr></tbody></table><br/>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="tab-pane" id="tab_2">
+							<table id="typestable" class="table table-bordered table-striped"
+								width="100%">
+								<thead>
+
+									<tr id="typesRule">
+										<th>风险类型</th>
+										
+										<th>等级</th>
+										<th>错误数量</th>
+										<th>规则描述</th>
+										<th>点击展开代码片段</th>
+									</tr></thead><tbody></tbody>
+								</thead>
+							</table><br/>
+						</div>
+
+						<div class="tab-pane" id="tab_3">
+							<table id="cpdtable" class="table table-bordered table-striped"
+								width="100%">
+								<thead>
+									<tr id="duplications">
+										<th width="5%" align="center">重复行数</th>
+										<th width="83%" align="center">重复文件详情</th>
+									</tr></thead><tbody></tbody>
+								</thead>
+							</table><br/>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			</section>
+		</div>
+		<a class="layer_ico layer_top" href="#body" style="display: block;"></a>
+    	<a class="feedback" href="https://wj.qq.com/s/1468386/f65f" id="footer_feedback" target="_blank"></a>
+		<footer class="main-footer">
+		<div class="pull-right hidden-xs">
+			<b>Qtest</b>团队出品
+		</div>
+		<strong>Copyright © 2019 <a href="http://magic.360.cn"
+			target="_blank">火线官网</a>.
+		</strong> All rights reserved. </footer>
+	</div>
+
+	<script src="js/jquery-2.2.3.min.js" type="text/javascript"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+	<script src="js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/Chart.min.js" type="text/javascript"></script>
+	<script>
+		$(function() {
+
+			var table = $('#typestable').DataTable({
+				"aaSorting" : [ [ 1, 'asc' ] ],
+				"pageLength" : 25,
+				"deferRender": true
+			});
+			var table1 = $('#cpdtable').DataTable({
+				"aaSorting" : [ [ 0, 'desc' ] ],
+				"pageLength" : 10,
+				"deferRender": true
+			});
+
+			
+			$('#typestable tbody').on('click', 'td.details-control',
+					function() {
+
+						var tr = $(this).closest('tr');
+						var row = table.row(tr);
+						var pre = $(this).children().html();
+
+						if (row.child.isShown()) {
+							// This row is already open - close it
+							row.child.hide();
+							tr.removeClass('shown');
+						} else {
+							// Open this row
+							row.child("<pre>" + pre + "</pre>").show();
+							tr.addClass('shown');
+						}
+					});
+			$('#cpdtable tbody').on('click', 'td.details-control',
+					function() {
+
+						var tr = $(this).closest('tr');
+						var row = table1.row(tr);
+						var pre = $(this).children().html();
+
+						if (row.child.isShown()) {
+							// This row is already open - close it
+							row.child.hide();
+							tr.removeClass('shown');
+						} else {
+							// Open this row				  
+							row.child("<pre>" + pre + "</pre>").show();
+							tr.addClass('shown');
+							//激活（Tooltip）插件
+							$("[data-toggle='tooltip']").tooltip();
+						}						
+					});
+		});
+
+		$('.gotodetails').on('click', function() {
+			$(".nav-tabs-custom a[href='#tab_2']").click();
+		});
+	</script>
+	<script>
+		$(function() {
+			//-------------
+			//- PIE CHART -
+			//-------------
+			// Get context with jQuery - using jQuery's .get() method.
+			var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+			var pieChart = new Chart(pieChartCanvas);
+			var BlockNum = $(".bg-black").text();
+			var ErrorNum = $(".bg-red").text();
+			var WarningNum = $(".bg-orange").text();
+			var SuggestNum = $(".bg-blue").text();
+
+			var PieData = [ {
+				value : BlockNum,
+				color : "black",
+				highlight : "black",
+				label : "Block"
+			}, {
+				value : ErrorNum,
+				color : "red",
+				highlight : "red",
+				label : "风险"
+			}, {
+				value : WarningNum,
+				color : "orange",
+				highlight : "orange",
+				label : "建议"
+			}, {
+				value : SuggestNum,
+				color : "#3498db",
+				highlight : "#3498db",
+				label : "优化"
+			} ];
+			var pieOptions = {
+				//Boolean - Whether we should show a stroke on each segment
+				segmentShowStroke : true,
+				//String - The colour of each segment stroke
+				segmentStrokeColor : "#fff",
+				//Number - The width of each segment stroke
+				segmentStrokeWidth : 2,
+				//Number - The percentage of the chart that we cut out of the middle
+				percentageInnerCutout : 50, // This is 0 for Pie charts
+				//Number - Amount of animation steps
+				animationSteps : 100,
+				//String - Animation easing effect
+				animationEasing : "easeOutBounce",
+				//Boolean - Whether we animate the rotation of the Doughnut
+				animateRotate : true,
+				//Boolean - Whether we animate scaling the Doughnut from the centre
+				animateScale : false,
+				//Boolean - whether to make the chart responsive to window resizing
+				responsive : true,
+				// Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+				maintainAspectRatio : true,
+				//String - A legend template
+				legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+			};
+			//Create pie or douhnut chart
+			// You can switch between pie and douhnut using the method below.
+			pieChart.Doughnut(PieData, pieOptions);
+		});
+	</script>
+</body>
+</html>
