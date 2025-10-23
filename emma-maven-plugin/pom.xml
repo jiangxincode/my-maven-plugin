@@ -14,9 +14,9 @@
     </prerequisites>
     <url>https://github.com/jiangxincode/emma-maven-plugin</url>
     <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
+        <groupId>com.github.jiangxincode</groupId>
+        <artifactId>my-maven-plugin</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
     <licenses>
         <license>
@@ -188,12 +188,10 @@
         <dependency>
             <groupId>org.apache.maven.reporting</groupId>
             <artifactId>maven-reporting-api</artifactId>
-            <version>3.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.reporting</groupId>
             <artifactId>maven-reporting-impl</artifactId>
-            <version>3.0.0</version>
         </dependency>
     </dependencies>
 </project>
